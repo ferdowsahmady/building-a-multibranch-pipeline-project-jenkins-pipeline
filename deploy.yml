@@ -2,6 +2,8 @@
 - hosts: webservers
   become: yes
   tasks:
+  ansible_user: ansible
+  
     - name: Ensure Apache is installed
       apt:
         name: apache2
