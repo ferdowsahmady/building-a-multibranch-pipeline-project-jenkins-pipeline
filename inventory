@@ -1,2 +1,2 @@
 [webservers]
-10.0.0.107 ANSIBLE_USER=root
+10.0.0.100 ANSIBLE_USER=ansible
