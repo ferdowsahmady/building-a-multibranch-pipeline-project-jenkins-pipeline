@@ -17,7 +17,7 @@ pipeline {
         stage('Ansible Build') {
             steps {
                 // Run Ansible playbook
-                sh 'ansible-playbook -i inventory.yml deploy.yml'
+                sh 'ansible-playbook -i inventory.yml test_ping.yml'
             }
         }
         stage('Deliver for development') {
