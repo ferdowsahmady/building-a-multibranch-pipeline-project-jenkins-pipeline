@@ -1,10 +1,21 @@
 ---
-- hosts: webservers
+- name: collect journalctl logs from hosts 
+  hosts: all
   become: yes
-    
+
   tasks:
-    - name: Ensure Apache is installed
-      dnf:
-        name: httpd
-        state: present
- 
+    - name: copy current boot's logs to file 
+      shell: "journalctl -b 0 > /tmp/journalctl" 
+
+    - name: compress log fileserver
+      archive: 
+        path: /tmp/journalctl
+        dest: /tmp/journalctl.tar.bz2
+        format: bz2
+        remove: true
+        force_archive: true 
+    - name: copy log files to Ansible controller
+      fetch:
+        src: /tmp/journalctl.tar.bz2
+        dest: "/home/ansbile/logs/journalctl-{{ ansible_hostname }}.tar.bz2"
+        flat: true 
