@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent Built-In Node
     environment {
         CI = 'true'
     }
