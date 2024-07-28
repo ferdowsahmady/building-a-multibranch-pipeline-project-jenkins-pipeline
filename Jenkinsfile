@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        CI = 'true'
+        ANSIBLE_HOST_KEY_CHECKING = 'False'
+        CI = true 
     }
     stages {
         stage('Build') {
@@ -14,10 +15,16 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Ansible Build') {
+        stage('Run Ansible Playbook') {
+            agent {
+               label 'ansible-agent' 
+            }
             steps {
-                // Run Ansible playbook
-                sh 'ansible-playbook -i inventory.yml test_ping.yml'
+                ansiblePlaybook(
+                    colorized: true, 
+                    playbook: 'test_ping.yml' 
+                    inventory: 'inventory.yml' 
+                )
             }
         }
         stage('Deliver for development') {
@@ -40,5 +47,12 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
+    }
+    post {
+        always {
+            // Clean up if necessary
+            echo 'Pipeline completed.'
+        }
+    
     }
 }
