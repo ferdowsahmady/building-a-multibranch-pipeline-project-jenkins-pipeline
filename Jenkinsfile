@@ -1,5 +1,5 @@
 pipeline {
-    agent Built-In Node
+    agent Jenkins
     environment {
         CI = 'true'
     }
