@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'ansible-agent' 
+    }
     environment {
         ANSIBLE_HOST_KEY_CHECKING = 'False'
         CI = true 
@@ -22,7 +24,7 @@ pipeline {
             steps {
                 ansiblePlaybook(
                     colorized: true, 
-                    playbook: 'test_ping.yml', 
+                    playbook: 'deploy.yml', 
                     inventory: 'inventory.yml', 
                 )
             }

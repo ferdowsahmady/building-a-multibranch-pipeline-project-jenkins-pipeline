@@ -6,5 +6,5 @@
     - name: Ensure Apache is installed
       dnf:
         name: httpd
-        state: present
+        state: absent
  
