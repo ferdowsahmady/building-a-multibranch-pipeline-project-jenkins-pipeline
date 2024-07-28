@@ -22,8 +22,8 @@ pipeline {
             steps {
                 ansiblePlaybook(
                     colorized: true, 
-                    playbook: 'test_ping.yml' 
-                    inventory: 'inventory.yml' 
+                    playbook: 'test_ping.yml', 
+                    inventory: 'inventory.yml', 
                 )
             }
         }
