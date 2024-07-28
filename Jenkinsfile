@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-        label 'ansible-agent' 
-    }
+    agent  any 
+    // agent {
+    //     label 'ansible-agent' 
+    // }
     environment {
         ANSIBLE_HOST_KEY_CHECKING = 'False'
         CI = true 
@@ -18,9 +19,9 @@ pipeline {
             }
         }
         stage('Run Ansible Playbook') {
-            agent {
-               label 'ansible-agent' 
-            }
+            // agent {
+            //    label 'ansible-agent' 
+            // }
             steps {
                 ansiblePlaybook(
                     colorized: true, 
