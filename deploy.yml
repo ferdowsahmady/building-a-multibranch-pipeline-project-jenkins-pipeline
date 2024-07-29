@@ -14,14 +14,8 @@
         name: 
           - httpd
           - php 
-          - tree
+          - vim
         state: present
         update_cache: true
         update_only:  true
       when: ansible_distribution == "CentOS"
- 
-    - name: start httpd service
-      service:
-        name: httpd 
-        state: started
-        enabled: true
