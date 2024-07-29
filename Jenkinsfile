@@ -1,6 +1,6 @@
 pipeline { 
     agent {
-        label 'ansible-agent' 
+        label 'jenkins-server' 
     }
     environment {
         ANSIBLE_HOST_KEY_CHECKING = 'False'
